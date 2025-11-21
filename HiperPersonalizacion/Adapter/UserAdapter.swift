@@ -11,13 +11,14 @@ enum UserAdapter {
     
     static func convert(data: DesignTokens) -> ResponseConfig {
         
-        // 1. Grupos principales según tu JSON
+        // 1. Grupos principales
         let colorGroup        = data.first(where: { $0.name == "Color" })
         let typoGroup         = data.first(where: { $0.name == "Tipografía" })
         let translationGroup  = data.first(where: { $0.name == "Traducción" })
         let numbersGroup      = data.first(where: { $0.name == "Numbers" })
+        let textGroup         = data.first(where: { $0.name == "Text" })
         
-        // 2. Modos que vamos a usar (puedes cambiar la lógica luego)
+        // 2. Modos
         let lightMode   = colorGroup?.values.first(where: { $0.mode.name == "Lightmode" })
                         ?? colorGroup?.values.first
         
@@ -33,7 +34,10 @@ enum UserAdapter {
         let smallNumbers = numbersGroup?.values.first(where: { $0.mode.name == "Small" })
                          ?? numbersGroup?.values.last
         
-        // 3. Helpers para buscar valores dentro de [Colors]
+        let textMode = textGroup?.values.first(where: { $0.mode.name == "light" })
+                     ?? textGroup?.values.first
+        
+        // 3. Helpers
         func value(in items: [Colors]?, named name: String, default def: String = "") -> String {
             items?.first(where: { $0.name == name })?.value ?? def
         }
@@ -46,35 +50,34 @@ enum UserAdapter {
             
             return CGFloat(Double(s) ?? Double(def))
         }
-        ///
         
-        // 4. Colores (grupo "Color" / modo "Lightmode")
+        // 4. Colores
         let bgBody    = value(in: lightMode?.color, named: "bg_body",   default: "#FFFFFF")
         let bgBottom  = value(in: lightMode?.color, named: "bg_bottom", default: "#FFFFFF")
         let button    = value(in: lightMode?.color, named: "button",    default: "#000000")
         
-        // 5. Traducciones (grupo "Traducción" / modo "Español")
+        // 5. Traducciones
         let biometricos = value(in: spanishMode?.string, named: "Biométricos", default: "Biométricos")
         let contrasena  = value(in: spanishMode?.string, named: "Contraseña",  default: "Contraseña")
         let ingresar    = value(in: spanishMode?.string, named: "Ingresar",    default: "Ingresar")
         
-        // 6. Tipografía (grupo "Tipografía" / modo "XL")
+        // 6. Tipografía
         let fuente = value(
             in: xlMode?.string,
             named: "font/family/title",
             default: "System"
         )
         
-        
-
-        
-        // 7. Números (grupo "Numbers" → Large/Small)
+        // 7. Números
         let borderPx       = value(in: largeNumbers?.number, named: "Cards", default: "0px")
         let borderSmallPx  = value(in: smallNumbers?.number, named: "Cards", default: "0px")
         
-        // 8. Armar el ResponseConfig final
+        // 8. Texto general (MLC)
+        let headerTitle = value(in: textMode?.string, named: "Alert", default: "MLC")   
+        
         let themeName = lightMode?.mode.name ?? "Default"
         
+        // 9. Construcción del ResponseConfig COMPLETO
         return ResponseConfig(
             name: themeName,
             bg_body: bgBody,
@@ -86,7 +89,8 @@ enum UserAdapter {
             fuente: fuente,
             border: px(borderPx),
             border_small: px(borderSmallPx),
-            tema: themeName            
+            tema: themeName,
+            header_title: headerTitle
         )
     }
 }

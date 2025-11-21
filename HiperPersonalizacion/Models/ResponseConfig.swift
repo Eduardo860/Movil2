@@ -22,6 +22,7 @@ struct ResponseConfig: Codable {
     let border: CGFloat
     let border_small: CGFloat
     let tema: String
+    let header_title: String
 }
 
 
@@ -37,6 +38,7 @@ extension ResponseConfig {
         fuente: "HelveticaNeue",
         border: 20,
         border_small: 16,
-        tema: "Light"
+        tema: "Light",
+        header_title: "MLC"
     )
 }
