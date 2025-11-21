@@ -46,6 +46,7 @@ enum UserAdapter {
             
             return CGFloat(Double(s) ?? Double(def))
         }
+        ///
         
         // 4. Colores (grupo "Color" / modo "Lightmode")
         let bgBody    = value(in: lightMode?.color, named: "bg_body",   default: "#FFFFFF")
