@@ -85,7 +85,7 @@ struct Home: View {
             VStack {
                 Spacer()
                        menuNavigator(config: config, home: true)
-                           .padding(.bottom, 10)
+                           
             }
         }
     }
@@ -94,7 +94,7 @@ struct Home: View {
     
     private func header(config: ResponseConfig) -> some View {
         ZStack {
-            Text("MLC")
+            Text(config.header_title)
                 .font(config.fuente.toSwiftUIFont(size: 26))
                 .kerning(4)
             
