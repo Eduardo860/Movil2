@@ -4,97 +4,102 @@
 //
 //  Created by Diego Rodrigo Hernandez Castlazzo on 20/11/25.
 //
+
 import SwiftUI
 
-struct menuNavigator: View {
+struct MenuNavigator: View {
     let config: ResponseConfig
     let home: Bool
     
     var body: some View {
         HStack(spacing: 26) {
             
-         
+            // --- HOME ---
             if home {
-                
-                bottomIcon(system: "house.fill", active: true, title: "Home")
+                activeIcon(system: "house.fill", title: "Home")
             } else {
                 NavigationLink {
                     Home()
                 } label: {
-                    bottomIcon(system: "house.fill", active: false, title: nil)
+                    inactiveIcon(system: "house.fill")
                 }
             }
-
-            // Otros botones (sin navegación)
-            bottomIcon(system: "heart.fill", active: false, title: nil)
-            bottomIcon(system: "shippingbox.fill", active: false, title: nil)
-
+            
+            // --- Otros botones sin navegación ---
+            inactiveIcon(system: "heart.fill")
+            inactiveIcon(system: "shippingbox.fill")
+            
+            // --- CART ---
             NavigationLink {
                 CartDribbbleView(config: config)
             } label: {
-                ZStack {
-                    bottomIcon(system: "basket", active: !home, title: home ? nil : "Cart")
-
-                    VStack {
-                        HStack {
-                            Spacer()
-                            ZStack {
-                                Circle()
-                                    .fill(Color(red: 1.0, green: 104/255, blue: 57/255))
-                                    .frame(width: 18, height: 18)
-                                Text("4")
-                                    .font(.system(size: 11, weight: .bold))
-                                    .foregroundColor(.white)
-                            }
-                            .offset(x: home ? 10 : -45)
-                        }
-                        Spacer()
+                ZStack(alignment: .topTrailing) {
+                    
+                    if home {
+                        inactiveIcon(system: "basket")
+                    } else {
+                        activeIcon(system: "basket", title: "Cart")
                     }
+                    
+                    // Badge
+                    Circle()
+                        .fill(Color(red: 1, green: 104/255, blue: 57/255))
+                        .frame(width: 18, height: 18)
+                        .overlay(
+                            Text("4")
+                                .font(.system(size: 11, weight: .bold))
+                                .foregroundColor(.white)
+                        )
+                        .offset(x: 6, y: -6)
                 }
             }
-
         }
         .padding(.horizontal, 30)
         .padding(.vertical, 10)
         .background(
-            RoundedRectangle(cornerRadius: 28)
+            RoundedRectangle(cornerRadius: config.border)
                 .fill(Color.white)
-                .shadow(color: Color.black.opacity(0.18),
-                        radius: 12, x: 0, y: 6)
+                .shadow(color: Color.black.opacity(0.18), radius: 12, x: 0, y: 0)
         )
         .padding(.horizontal, 32)
-        .frame(height: 50)
+        .frame(height: 60)
     }
+}
 
-    private func bottomIcon(system: String, active: Bool, title: String?) -> some View {
+// MARK: - Ícono Activo (con texto + capsule)
+private extension MenuNavigator {
+    func activeIcon(system: String, title: String) -> some View {
         HStack(spacing: 6) {
             Image(systemName: system)
-                .font(.system(size: 18, weight: .semibold))
-
-            if let title = title {
-                Text(title)
-                    .font(.system(size: 14, weight: .semibold))
-            }
+                .font(config.fuente.toSwiftUIFont(size: 18))
+            
+            Text(title)
+                .font(config.fuente.toSwiftUIFont(size: 14))
         }
-        .padding(.horizontal, title == nil ? 0 : 10)
+        .foregroundColor(.white)
+        .padding(.horizontal, 14)
         .padding(.vertical, 8)
-        .foregroundColor(active ? .white : .gray)
         .background(
-            Group {
-                if active {
-                    Capsule()
-                        .fill(Color(hex: config.button))
-                        .frame(width: 120, height: 50)
-                } else {
-                    Capsule().fill(Color.clear)
-                }
-            }
+            Capsule()
+                .fill(Color(hex: config.button))
         )
     }
 }
 
+// MARK: - Ícono Inactivo (solo el ícono)
+private extension MenuNavigator {
+    func inactiveIcon(system: String) -> some View {
+        Image(systemName: system)
+            .font(config.fuente.toSwiftUIFont(size: 18))
+            .foregroundColor(.gray)
+            .padding(.vertical, 8)
+    }
+}
+
+// MARK: - PREVIEW
+
 #Preview {
-    menuNavigator(config: .preview, home: false)
+    MenuNavigator(config: .preview, home: false)
         .padding()
         .background(Color.gray.opacity(0.1))
 }

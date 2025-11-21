@@ -87,7 +87,7 @@ struct Home: View {
             
             VStack {
                 Spacer()
-                menuNavigator(config: config, home: true)
+                MenuNavigator(config: config, home: true)
             }
         }
     }

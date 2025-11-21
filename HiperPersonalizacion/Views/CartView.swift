@@ -90,7 +90,7 @@ struct CartDribbbleView: View {
                 
                 Spacer()
                 
-                menuNavigator(config:config, home:false)
+                MenuNavigator(config:config, home:false)
                     .padding(.bottom, 5)
                 
                 Spacer()
