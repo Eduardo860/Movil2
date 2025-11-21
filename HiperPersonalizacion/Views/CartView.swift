@@ -83,15 +83,15 @@ struct CartDribbbleView: View {
                 promoItemCard(config: config)
                     .padding(.horizontal, 10)
                 
-                totalItemCard()
+                totalItemCard(config: config)
                     .padding(.horizontal, 10)
                 
                 checkoutItemButton(config: config)
                 
                 Spacer()
                 
-                menuNavigator(config:config,home:false)
-                    .padding()
+                menuNavigator(config:config, home:false)
+                    .padding(.bottom, 5)
                 
                 Spacer()
             }

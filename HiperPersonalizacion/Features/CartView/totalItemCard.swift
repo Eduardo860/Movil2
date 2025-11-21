@@ -8,54 +8,60 @@
 import SwiftUI
 
 struct totalItemCard: View {
+    let config: ResponseConfig
+
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
                 Text("Total:")
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(config.fuente.toSwiftUIFont(size: 17))
+                    .fontWeight(.semibold)
                     .foregroundColor(.black)
                 Spacer()
                 Text("$878.71")
-                    .font(.system(size: 17, weight: .bold))
+                    .font(config.fuente.toSwiftUIFont(size: 17))
+                    .fontWeight(.bold)
                     .foregroundColor(.black)
             }
             
             HStack {
                 Text("Subtotal:")
-                    .font(.system(size: 13))
+                    .font(config.fuente.toSwiftUIFont(size: 13))
                     .foregroundColor(.gray)
                 Spacer()
                 Text("$828.97")
-                    .font(.system(size: 13))
+                    .font(config.fuente.toSwiftUIFont(size: 13))
                     .foregroundColor(.gray)
             }
             
             HStack {
                 Text("Fees:")
-                    .font(.system(size: 13))
+                    .font(config.fuente.toSwiftUIFont(size: 13))
                     .foregroundColor(.gray)
                 Spacer()
                 Text("$49.74")
-                    .font(.system(size: 13))
+                    .font(config.fuente.toSwiftUIFont(size: 13))
                     .foregroundColor(.gray)
             }
                         
             HStack {
                 Text("Delivery Options")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(config.fuente.toSwiftUIFont(size: 14))
+                    .fontWeight(.semibold)
                     .foregroundColor(.black)
                 Spacer()
                 Text("Standard (Free)")
-                    .font(.system(size: 13))
+                    .font(config.fuente.toSwiftUIFont(size: 13))
                     .foregroundColor(.gray)
                 Image(systemName: "chevron.down")
-                    .font(.system(size: 11, weight: .bold))
+                    .font(config.fuente.toSwiftUIFont(size: 11))
+                    .fontWeight(.bold)
                     .foregroundColor(.gray)
             }
         }
         .padding(16)
         .background(
-            RoundedRectangle(cornerRadius: 24)
+            RoundedRectangle(cornerRadius: config.border)
                 .fill(
                     Color.white
                 )
@@ -64,7 +70,7 @@ struct totalItemCard: View {
 }
 
 #Preview {
-    totalItemCard()
+    totalItemCard(config: .preview)
     .padding()
     .background(Color.gray.opacity(0.1))
 }

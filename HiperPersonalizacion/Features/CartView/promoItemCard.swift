@@ -11,16 +11,17 @@ struct promoItemCard: View {
     var body: some View {
         HStack(spacing: 12) {
             Text("Enter promocode")
-                .font(.system(size: 15))
+                .font(config.fuente.toSwiftUIFont(size: 15))
                 .foregroundColor(.gray)
                 .padding(.leading, 30)
             Spacer()
             
-            RoundedRectangle(cornerRadius: 30)
+            RoundedRectangle(cornerRadius: config.border)
                 .fill(Color(hex:config.button))
                 .overlay(
                     Text("Apply Code")
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(config.fuente.toSwiftUIFont(size: 16))
+                        .fontWeight(.semibold)
                         .foregroundColor(.white)
                 )
                 .frame(width: 135, height: 60)
@@ -28,7 +29,7 @@ struct promoItemCard: View {
         }
         .frame(height: 70)
         .background(Color.white)
-        .cornerRadius(25)
+        .cornerRadius(config.border)
     }
 }
 

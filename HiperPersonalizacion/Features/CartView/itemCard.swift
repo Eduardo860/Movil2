@@ -18,7 +18,7 @@ struct ItemCardView: View {
         VStack(spacing: 14) {
             HStack(spacing: 14) {
                 
-                RoundedRectangle(cornerRadius: 10)
+                RoundedRectangle(cornerRadius: config.border)
                     .fill(Color.white)
                     .overlay(
                         AsyncImage(url: URL(string: imageName)) { phase in
@@ -47,17 +47,21 @@ struct ItemCardView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     
                     Text(title)
-                        .font(.system(size: 14, weight: .semibold))
+                    
+
+                        .font(config.fuente.toSwiftUIFont(size: 14))
+                        .fontWeight(.semibold)
                         .foregroundColor(.black.opacity(0.9))
                         .lineLimit(2)
                     
                     Text(subtitle)
-                        .font(.system(size: 12))
+                        .font(config.fuente.toSwiftUIFont(size: 12))
                         .foregroundColor(.gray)
                     
                     HStack {
                         Text(priceText)
-                            .font(.system(size: 15, weight: .semibold))
+                            .font(config.fuente.toSwiftUIFont(size: 14))
+                            .fontWeight(.semibold)
                             .foregroundColor(Color(hex: config.button))
                             .padding(.horizontal, 18)
                             .padding(.vertical, 9)
@@ -74,7 +78,9 @@ struct ItemCardView: View {
                         
                         HStack(spacing: 4) {
                             Text("1")
-                                .font(.system(size: 13, weight: .medium))
+                                .font(config.fuente.toSwiftUIFont(size: 13))
+                                .fontWeight(.medium)
+
                             
                             Image(systemName: "chevron.down")
                                 .font(.system(size: 10, weight: .bold))
@@ -103,7 +109,7 @@ struct ItemCardView: View {
         }
         .padding(14)
         .background(
-            RoundedRectangle(cornerRadius: 28)
+            RoundedRectangle(cornerRadius: config.border)
                 .fill(Color.white)
         )
         .shadow(color: Color.black.opacity(0.10), radius: 18, x: 0, y: 8)

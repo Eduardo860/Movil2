@@ -14,9 +14,10 @@ struct removeItemCard: View {
             HStack {
                 Spacer()
                 Image(systemName: "trash")
-                    .font(.system(size: 16))
+                    .font(config.fuente.toSwiftUIFont(size: 16))
                 Text("Remove Item")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(config.fuente.toSwiftUIFont(size: 14))
+                    .fontWeight(.semibold)
                 Spacer()
             }
             .foregroundColor(.black.opacity(0.9))
@@ -40,7 +41,8 @@ struct removeItemCard: View {
     
     func pillChoice(text: String, filled: Bool) -> some View {
         Text(text)
-            .font(.system(size: 14, weight: .semibold))
+            .font(config.fuente.toSwiftUIFont(size: 14))
+            .fontWeight(.semibold)
             .frame(maxWidth: 90)
             .padding(.vertical, 12)
             .background(

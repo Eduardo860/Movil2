@@ -11,7 +11,8 @@ struct checkoutItemButton: View {
     var body: some View {
         HStack {
             Image(systemName: "basket")
-                .font(.system(size: 16, weight: .semibold))
+                .font(config.fuente.toSwiftUIFont(size: 16))
+                .fontWeight(.semibold)
             Text("$878.71")
                 .font(.system(size: 17, weight: .bold))
         }
