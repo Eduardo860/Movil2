@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct checkoutItemButton: View {
+    let config: ResponseConfig
     var body: some View {
         HStack {
             Image(systemName: "basket")
@@ -19,7 +20,7 @@ struct checkoutItemButton: View {
         .padding(.vertical, 23)
         .background(
             Capsule()
-                .fill(Color(red: 129/255, green: 104/255, blue: 255/255))
+                .fill(Color(hex:config.button))
         )
         .padding(.horizontal, 10)
         .padding(.top, 8)
@@ -27,7 +28,7 @@ struct checkoutItemButton: View {
 }
 
 #Preview {
-    checkoutItemButton()
-    .padding()
-    .background(Color.gray.opacity(0.1))
+    checkoutItemButton(config: .preview)
+        .padding()
+        .background(Color.gray.opacity(0.1))
 }

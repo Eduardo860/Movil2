@@ -4,7 +4,7 @@
 //
 //  Created by Eduardo Pérez Córdova on 18/11/25.
 //
-import Foundation
+import SwiftUI
 
 enum APIDataSource {
     case firebase(DesignToken)
@@ -24,3 +24,19 @@ struct ResponseConfig: Codable {
     let tema: String
 }
 
+
+extension ResponseConfig {
+    static let preview: ResponseConfig = ResponseConfig(
+        name: "Preview",
+        bg_body: "#F6F7FB",
+        bg_bottom: "#EEEEEE",
+        button: "#5C3BEE",
+        biometricos: "Biométricos",
+        contrasena: "Contraseña",
+        ingresar: "Ingresar",
+        fuente: "HelveticaNeue",
+        border: 20,
+        border_small: 16,
+        tema: "Light"
+    )
+}

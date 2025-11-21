@@ -7,6 +7,7 @@
 import SwiftUI
 
 struct promoItemCard: View {
+    let config: ResponseConfig
     var body: some View {
         HStack(spacing: 12) {
             Text("Enter promocode")
@@ -16,7 +17,7 @@ struct promoItemCard: View {
             Spacer()
             
             RoundedRectangle(cornerRadius: 30)
-                .fill(Color(red: 129/255, green: 104/255, blue: 255/255))
+                .fill(Color(hex:config.button))
                 .overlay(
                     Text("Apply Code")
                         .font(.system(size: 16, weight: .semibold))
@@ -32,7 +33,7 @@ struct promoItemCard: View {
 }
 
 #Preview {
-    promoItemCard()
+    promoItemCard(config: .preview)
     .padding()
     .background(Color.gray.opacity(0.1))
 }

@@ -10,36 +10,70 @@ struct ProductCardView: View {
     let product: Product
     let config: ResponseConfig
     
-    // Misma configuración que en Home.productCard
-    private let cardHeight: CGFloat       = 300   // altura total
-    private let imageAreaHeight: CGFloat  = 120   // área de la imagen
-    private let frontCardHeight: CGFloat  = 140   // tarjeta blanca frontal
+    private let cardHeight: CGFloat       = 300
+    private let imageAreaHeight: CGFloat  = 120
+    private let frontCardHeight: CGFloat  = 140
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
-            // ZStack base: fondo gris + imagen + tarjeta blanca
+            
             ZStack(alignment: .bottom) {
-                // Tarjeta de fondo
+                
                 RoundedRectangle(cornerRadius: config.border)
                     .fill(Color(hex: config.bg_bottom).opacity(0.25))
                     .shadow(color: Color.black.opacity(0.06),
                             radius: 10, x: 0, y: 8)
                     .frame(height: cardHeight)
 
-                // Imagen con altura fija en la parte superior
                 VStack(spacing: 0) {
-                    Image(systemName: product.imageName)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: imageAreaHeight)
-                        .frame(maxWidth: .infinity)
-                        .padding(.top, 10)
-                        .foregroundColor(.gray)
+                    
+                    if let url = URL(string: product.imageName),
+                       product.imageName.contains("http") {
+
+                        AsyncImage(url: url) { phase in
+                            switch phase {
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: imageAreaHeight)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.top, 10)
+
+                            case .failure(_):
+                                Image(systemName: "photo")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: imageAreaHeight)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.top, 10)
+                                    .foregroundColor(.gray)
+
+                            case .empty:
+                                ProgressView()
+                                    .frame(height: imageAreaHeight)
+
+                            @unknown default:
+                                EmptyView()
+                            }
+                        }
+
+                    } else {
+                        
+                        Image(systemName: product.imageName)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: imageAreaHeight)
+                            .frame(maxWidth: .infinity)
+                            .padding(.top, 10)
+                            .foregroundColor(.gray)
+                    }
+                    
 
                     Spacer()
                 }
 
-                // Tarjeta frontal blanca (textos + botón)
+                
                 VStack(spacing: 10) {
                     VStack(spacing: 2) {
                         Text(product.name)
@@ -56,7 +90,7 @@ struct ProductCardView: View {
                     }
 
                     Button {
-                        // acción del botón (por ahora vacío)
+                        
                     } label: {
                         RoundedRectangle(cornerRadius: config.border_small)
                             .stroke(Color(hex: config.button), lineWidth: 1.5)
@@ -64,12 +98,10 @@ struct ProductCardView: View {
                             .overlay(
                                 Group {
                                     if product.price.lowercased() == "in cart" {
-                                        // Caso "In cart" → solo texto
                                         Text(product.price)
                                             .font(config.fuente.toSwiftUIFont(size: 13))
                                             .foregroundColor(Color(hex: config.button))
                                     } else {
-                                        // Caso precio → icono + texto
                                         HStack(spacing: 6) {
                                             Image(systemName: "basket.fill")
                                                 .font(.system(size: 13, weight: .semibold))
@@ -93,7 +125,7 @@ struct ProductCardView: View {
                 .padding(.horizontal, 8)
                 .padding(.bottom, 8)
             }
-            // Badge "Top item" por fuera, centrado entre imagen y tarjeta blanca
+            
             .overlay(
                 Group {
                     if product.isTop {
@@ -108,18 +140,14 @@ struct ProductCardView: View {
                             )
                             .shadow(color: Color.black.opacity(0.1),
                                     radius: 4, x: 0, y: 2)
-                            // Lo subimos hacia la unión entre imagen y tarjeta blanca
                             .offset(y: -(frontCardHeight / 1.2) - 10)
                     }
                 },
                 alignment: .bottom
             )
-
-            // Corazón flotante
             Button {
-                // acción favorito (por ahora vacío)
             } label: {
-                Image(systemName: "heart")
+                Image(systemName: product.isLiked ? "heart.fill" : "heart")
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(Color(hex: config.button))
                     .padding(10)
@@ -135,30 +163,19 @@ struct ProductCardView: View {
     }
 }
 
+
 #Preview {
-    let dummyConfig = ResponseConfig(
-        name: "Preview",
-        bg_body: "#F6F7FB",
-        bg_bottom: "#EEEEEE",
-        button: "#5C3BEE",
-        biometricos: "Biométricos",
-        contrasena: "Contraseña",
-        ingresar: "Ingresar",
-        fuente: "HelveticaNeue",
-        border: 20,
-        border_small: 16,
-        tema: "Light"
-    )
-    
+   
     let product = Product(
         name: "Smart Watch WH22-6",
         subtitle: "Fitness Tracker",
         price: "In cart",
         isTop: true,
-        imageName: "applewatch"
+        imageName: "applewatch",
+        isLiked: true
     )
     
-    return ProductCardView(product: product, config: dummyConfig)
+    return ProductCardView(product: product, config: .preview)
         .padding()
         .background(Color(hex: "#F6F7FB"))
 }

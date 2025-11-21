@@ -7,6 +7,8 @@
 import SwiftUI
 
 struct removeItemCard: View {
+    let config: ResponseConfig
+    
     var body: some View {
         VStack(spacing: 12) {
             HStack {
@@ -43,18 +45,18 @@ struct removeItemCard: View {
             .padding(.vertical, 12)
             .background(
                 Capsule()
-                    .fill(filled ? Color(red: 129/255, green: 104/255, blue: 255/255) : Color.clear)
+                    .fill(filled ? Color(hex:config.button) : Color.clear)
             )
             .overlay(
                 Capsule()
-                    .stroke(Color(red: 129/255, green: 104/255, blue: 255/255), lineWidth: filled ? 0 : 1)
+                    .stroke(Color(hex:config.button), lineWidth: filled ? 0 : 1)
             )
-            .foregroundColor(filled ? .white : Color(red: 129/255, green: 104/255, blue: 255/255))
+            .foregroundColor(filled ? .white : Color(hex: config.button))
     }
 }
 
 #Preview {
-    removeItemCard()
+    removeItemCard(config: .preview)
     .padding()
     .background(Color.gray.opacity(0.1))
 }

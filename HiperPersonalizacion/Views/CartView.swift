@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CartDribbbleView: View {
     let config: ResponseConfig
+    
     var body: some View {
             VStack {
                 HStack {
@@ -56,6 +57,7 @@ struct CartDribbbleView: View {
                     .padding(.top, 20)
                 }
                 ItemCardView(
+                    config: config,
                     title: "Smartwatch",
                     subtitle: "44mm Gray",
                     priceText: "$450.00",
@@ -64,11 +66,12 @@ struct CartDribbbleView: View {
                 .padding(.top, 20)
                 .padding(.horizontal, 10)
                 
-                removeItemCard()
+                removeItemCard(config: config)
                     .padding(.top, 1)
                 
                     .padding(.horizontal, 10)
                 ItemCardView(
+                    config: config,
                     title: "Premium Boxing Gloves for Sp...",
                     subtitle: "12oz / White",
                     priceText: "$196.99",
@@ -77,21 +80,43 @@ struct CartDribbbleView: View {
                 .padding(.top, 1)
                 .padding(.horizontal, 10)
                 
-                promoItemCard()
+                promoItemCard(config: config)
                     .padding(.horizontal, 10)
                 
                 totalItemCard()
                     .padding(.horizontal, 10)
                 
-                checkoutItemButton()
+                checkoutItemButton(config: config)
                 
                 Spacer()
                 
-                menuNavigator(home:false)
+                menuNavigator(config:config,home:false)
                     .padding()
                 
                 Spacer()
             }
-            .background(Color.gray.opacity(0.1))
+            .background(Color(hex:config.bg_body))
         }
+}
+
+
+#Preview {
+    CartPreviewWrapper()
+        .environmentObject(
+            DesignTokensViewModel(tokenProvider: FirebaseTokenProvider())
+        )
+}
+
+private struct CartPreviewWrapper: View {
+    @EnvironmentObject var tokensVM: DesignTokensViewModel
+    
+    var body: some View {
+        Group {
+            if let config = tokensVM.config {
+                CartDribbbleView(config: config)
+            } else {
+                ProgressView("Cargando tokens de Firebase...")
+            }
+        }
+    }
 }

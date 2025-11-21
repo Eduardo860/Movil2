@@ -65,6 +65,9 @@ enum UserAdapter {
             default: "System"
         )
         
+        
+
+        
         // 7. Números (grupo "Numbers" → Large/Small)
         let borderPx       = value(in: largeNumbers?.number, named: "Cards", default: "0px")
         let borderSmallPx  = value(in: smallNumbers?.number, named: "Cards", default: "0px")
@@ -73,17 +76,17 @@ enum UserAdapter {
         let themeName = lightMode?.mode.name ?? "Default"
         
         return ResponseConfig(
-            name: themeName,            // nombre "Lightmode"
-            bg_body: bgBody,            // "#000000" / "#00c7fc" según el JSON
-            bg_bottom: bgBottom,        // "#ffffff" / "#94e3fe"
-            button: button,             // "#919191" u otro
-            biometricos: biometricos,   // "Biométricos"
-            contrasena: contrasena,     // "Contraseña"
-            ingresar: ingresar,         // "Entrar"
-            fuente: fuente,             // "Roboto"
-            border: px(borderPx),       // "20px" → 20.0
-            border_small: px(borderSmallPx), // "8px" → 8.0
-            tema: themeName             // lo mismo que name, por ahora
+            name: themeName,
+            bg_body: bgBody,
+            bg_bottom: bgBottom,
+            button: button,
+            biometricos: biometricos,
+            contrasena: contrasena,
+            ingresar: ingresar,
+            fuente: fuente,
+            border: px(borderPx),
+            border_small: px(borderSmallPx),
+            tema: themeName            
         )
     }
 }

@@ -20,7 +20,21 @@ struct HiperPersonalizacionApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack{
+                Home()
+                    .environmentObject(designVM)
+            }
+           
         }
+    }
+}
+
+
+#Preview {
+    NavigationStack {
+        Home()
+            .environmentObject(
+                DesignTokensViewModel(tokenProvider: FirebaseTokenProvider())
+            )
     }
 }

@@ -7,6 +7,8 @@
 import SwiftUI
 
 struct ItemCardView: View {
+    
+    let config: ResponseConfig
     let title: String
     let subtitle: String
     let priceText: String
@@ -15,6 +17,7 @@ struct ItemCardView: View {
     var body: some View {
         VStack(spacing: 14) {
             HStack(spacing: 14) {
+                
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.white)
                     .overlay(
@@ -42,6 +45,7 @@ struct ItemCardView: View {
                     .frame(width: 86, height: 86)
                 
                 VStack(alignment: .leading, spacing: 4) {
+                    
                     Text(title)
                         .font(.system(size: 14, weight: .semibold))
                         .foregroundColor(.black.opacity(0.9))
@@ -54,7 +58,7 @@ struct ItemCardView: View {
                     HStack {
                         Text(priceText)
                             .font(.system(size: 15, weight: .semibold))
-                            .foregroundColor(Color(red: 129/255, green: 104/255, blue: 255/255))
+                            .foregroundColor(Color(hex: config.button))
                             .padding(.horizontal, 18)
                             .padding(.vertical, 9)
                             .background(
@@ -63,15 +67,15 @@ struct ItemCardView: View {
                             )
                             .overlay(
                                 Capsule()
-                                    .stroke(Color(red: 129/255, green: 104/255, blue: 255/255), lineWidth: 1.5)
+                                    .stroke(Color(hex: config.button), lineWidth: 1.5)
                             )
-
-
+                        
                         Spacer()
                         
                         HStack(spacing: 4) {
                             Text("1")
                                 .font(.system(size: 13, weight: .medium))
+                            
                             Image(systemName: "chevron.down")
                                 .font(.system(size: 10, weight: .bold))
                         }
@@ -100,9 +104,7 @@ struct ItemCardView: View {
         .padding(14)
         .background(
             RoundedRectangle(cornerRadius: 28)
-                .fill(
-                    Color.white
-                )
+                .fill(Color.white)
         )
         .shadow(color: Color.black.opacity(0.10), radius: 18, x: 0, y: 8)
     }
@@ -110,10 +112,11 @@ struct ItemCardView: View {
 
 #Preview {
     ItemCardView(
+        config: .preview,
         title: "Smart Watch WH22–6 Fitness...",
         subtitle: "44mm / Gray",
         priceText: "$450.00",
-        imageName: "https://picsum.photos/200" // imagen de prueba
+        imageName: "https://picsum.photos/200"
     )
     .padding()
     .background(Color.gray.opacity(0.1))
