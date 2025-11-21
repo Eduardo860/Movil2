@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		108D07D32ECFEE23004EE750 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 108D07D22ECFEE1B004EE750 /* .gitignore */; };
 		10FAE74D2ECFAD5B009F851C /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 10FAE74C2ECFAD5B009F851C /* FirebaseDatabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		108D07D22ECFEE1B004EE750 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		10C3E7622ECD105B000482CB /* HiperPersonalizacion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HiperPersonalizacion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -37,6 +39,7 @@
 		10C3E7592ECD105B000482CB = {
 			isa = PBXGroup;
 			children = (
+				108D07D22ECFEE1B004EE750 /* .gitignore */,
 				10C3E7642ECD105B000482CB /* HiperPersonalizacion */,
 				10C3E7632ECD105B000482CB /* Products */,
 			);
@@ -118,6 +121,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				108D07D32ECFEE23004EE750 /* .gitignore in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

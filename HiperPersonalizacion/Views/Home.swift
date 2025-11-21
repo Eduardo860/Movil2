@@ -10,10 +10,9 @@ import SwiftUI
 struct Home: View {
     @EnvironmentObject var tokensVM: DesignTokensViewModel
     
-    // Estado local solo para UI (no es otro ViewModel)
     @State private var selectedCategory: String = "Sport"
     
-    // Datos dummy solo para maquetar
+    
     private let categories = ["Wellness", "Art", "Sport", "Home", "Music"]
     
     private let products: [Product] = [
@@ -21,23 +20,31 @@ struct Home: View {
                 subtitle: "Fitness Tracker",
                 price: "In cart",
                 isTop: true,
-                imageName: "applewatch"),
+                imageName: "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MXM23ref_FV99_VW_34FR+watch-case-46-titanium-slate-cell-s11_VW_34FR+watch-face-46-titanium-slate-s11_VW_34FR_GEO_MX?wid=2000&hei=2000&fmt=png-alpha&.v=TnVrdDZWRlZzTURKbHFqOGh0dGpVRW5TeWJ6QW43NUFnQ2V4cmRFc1VnWTc4blplVGNpSEZpNjZUNjVaN2NmQ3RJRTVDMHMyN1FVbEVmSUZqNGJHdnZmQXlUU2xCQ2pTN3lrcDE0UU1hK0VYZWthQXJCL2NtQ1RrVVMvZXZWQVlmZk9nL2NRSG9kM0xGNis5SVNCUEExNGxjSGpqblBHdjdHb0ZZbHYvVFZtLzRpa1dhcXBneVhtUk15MGZlY0FDK3BnT2ZXblNnWDBEYWFZb2JVeDdORDdBMjdrMmZzZW05c1crdHA4ZC92Yw",
+                isLiked: true),
+
         Product(name: "Club Kit 1 Recurve",
                 subtitle: "Archery Set",
                 price: "$48.99",
                 isTop: false,
-                imageName: "figure.archery"),
+                imageName: "https://w7.pngwing.com/pngs/447/640/png-transparent-bow-and-arrow-ranged-weapon-archery-recurve-bow-arrow-color-bow-weapon.png",
+                isLiked: false),
+
         Product(name: "Nike Air Vapormax Plus",
                 subtitle: "Light Blue 924453-402",
                 price: "$154.97",
                 isTop: false,
-                imageName: "shoeprints.fill"),
+                imageName: "https://static.nike.com/a/images/t_web_pw_592_v2/f_auto/9a7bea5c-c1d9-42c7-8e3a-5996716ee4e4/AIR+MAX+DN8+SE.png",
+                isLiked: false),
+
         Product(name: "Pullover Hoodie – Hoodie",
                 subtitle: "Unisex Casual",
                 price: "In cart",
                 isTop: true,
-                imageName: "tshirt")
+                imageName: "https://gride.com.mx/cdn/shop/files/hoodie_Custom_View_1.png?v=1748970050",
+                isLiked: true)
     ]
+
     
     private let columns = [
         GridItem(.flexible(), spacing: 4),//Horizontal Cartas
@@ -72,6 +79,13 @@ struct Home: View {
                     productGrid(config: config)
                 }
                 .padding(.bottom, 24)
+                
+                
+            }
+            VStack {
+                Spacer()
+                       menuNavigator(config: config, home: true)
+                           .padding(.bottom, 10)
             }
         }
     }
@@ -147,6 +161,8 @@ struct Home: View {
             }
         }
         .padding(.horizontal,12)
+        
+        
     }
 }
 
