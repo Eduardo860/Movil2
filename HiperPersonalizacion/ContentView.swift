@@ -25,19 +25,15 @@ struct ContentView: View {
                             .font(config.fuente.toSwiftUIFont(size: 24))
                             .padding()
                         
-                        Text(config.biometricos)
+                        Text("config.biometricos")
                             .font(config.fuente.toSwiftUIFont(size: 18))
                         
-                        SecureField(config.contrasena, text: .constant(""))
-                            .padding()
-                            .background(Color(hex: config.bg_bottom))
-                            .cornerRadius(config.border)
-                            .padding(.horizontal, 32)
+                     
                         
                         Button {
                             // acción dummy
                         } label: {
-                            Text(config.ingresar)
+                            Text("config.ingresar")
                                 .font(config.fuente.toSwiftUIFont(size: 18))
                                 .padding()
                                 .frame(maxWidth: .infinity)

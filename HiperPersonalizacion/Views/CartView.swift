@@ -14,7 +14,7 @@ struct CartDribbbleView: View {
             VStack {
                 HStack {
                     Spacer()
-                    Text("Cart")
+                    Text(config.cart_title)
                         .font(config.fuente.toSwiftUIFont(size: 24))
                         .padding(.top, 15)
                         .padding(.leading, 70)

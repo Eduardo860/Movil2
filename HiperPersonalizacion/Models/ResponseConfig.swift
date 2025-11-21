@@ -15,14 +15,12 @@ struct ResponseConfig: Codable {
     let bg_body: String
     let bg_bottom: String
     let button : String
-    let biometricos : String
-    let contrasena: String
-    let ingresar: String
     let fuente: String
     let border: CGFloat
     let border_small: CGFloat
     let tema: String
-    let header_title: String
+    let home_title: String
+    let cart_title: String
 }
 
 
@@ -32,13 +30,11 @@ extension ResponseConfig {
         bg_body: "#F6F7FB",
         bg_bottom: "#EEEEEE",
         button: "#5C3BEE",
-        biometricos: "Biométricos",
-        contrasena: "Contraseña",
-        ingresar: "Ingresar",
         fuente: "HelveticaNeue",
         border: 20,
         border_small: 16,
         tema: "Light",
-        header_title: "MLC"
+        home_title: "MLC",
+        cart_title: "CART"
     )
 }

@@ -52,14 +52,9 @@ enum UserAdapter {
         }
         
         // 4. Colores
-        let bgBody    = value(in: lightMode?.color, named: "bg_body",   default: "#FFFFFF")
-        let bgBottom  = value(in: lightMode?.color, named: "bg_bottom", default: "#FFFFFF")
-        let button    = value(in: lightMode?.color, named: "button",    default: "#000000")
-        
-        // 5. Traducciones
-        let biometricos = value(in: spanishMode?.string, named: "Biométricos", default: "Biométricos")
-        let contrasena  = value(in: spanishMode?.string, named: "Contraseña",  default: "Contraseña")
-        let ingresar    = value(in: spanishMode?.string, named: "Ingresar",    default: "Ingresar")
+        let bgBody   = value(in: lightMode?.color, named: "FONDO",   default: "#FFFFFF")
+        let bgBottom  = value(in: lightMode?.color, named: "SECUNDARIO", default: "#FFFFFF")
+        let button    = value(in: lightMode?.color, named: "BOTON",    default: "#000000")
         
         // 6. Tipografía
         let fuente = value(
@@ -73,7 +68,8 @@ enum UserAdapter {
         let borderSmallPx  = value(in: smallNumbers?.number, named: "Cards", default: "0px")
         
         // 8. Texto general (MLC)
-        let headerTitle = value(in: textMode?.string, named: "Alert", default: "MLC")   
+        let headerTitle = value(in: textMode?.string, named: "HOME", default: "MLC")
+        let cartTitle = value(in:textMode?.string, named: "CART" , default: "Cart")
         
         let themeName = lightMode?.mode.name ?? "Default"
         
@@ -83,14 +79,12 @@ enum UserAdapter {
             bg_body: bgBody,
             bg_bottom: bgBottom,
             button: button,
-            biometricos: biometricos,
-            contrasena: contrasena,
-            ingresar: ingresar,
             fuente: fuente,
             border: px(borderPx),
             border_small: px(borderSmallPx),
             tema: themeName,
-            header_title: headerTitle
+            home_title: headerTitle,
+            cart_title: cartTitle
         )
     }
 }
