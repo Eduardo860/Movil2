@@ -17,6 +17,7 @@ struct CartDribbbleView: View {
                     Spacer()
                     Text(config.cart_title)
                         .font(config.fuente.toSwiftUIFont(size: 24))
+                        .foregroundColor(Color(hex: config.button))
                         .padding(.top, 15)
                         .padding(.leading, 70)
                     Spacer()
