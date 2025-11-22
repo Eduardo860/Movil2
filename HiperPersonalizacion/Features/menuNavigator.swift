@@ -7,9 +7,11 @@
 
 import SwiftUI
 
+
 struct MenuNavigator: View {
     let config: ResponseConfig
     let home: Bool
+    @EnvironmentObject var tokensVM: DesignTokensViewModel
     
     var body: some View {
         HStack(spacing: 26) {
@@ -20,6 +22,7 @@ struct MenuNavigator: View {
             } else {
                 NavigationLink {
                     Home()
+                        .environmentObject(tokensVM)
                 } label: {
                     inactiveIcon(system: "house.fill")
                 }
@@ -32,6 +35,7 @@ struct MenuNavigator: View {
             // --- CART ---
             NavigationLink {
                 CartDribbbleView(config: config)
+                    .environmentObject(tokensVM)
             } label: {
                 ZStack(alignment: .topTrailing) {
                     

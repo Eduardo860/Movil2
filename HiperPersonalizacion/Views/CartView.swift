@@ -9,7 +9,8 @@ import SwiftUI
 
 struct CartDribbbleView: View {
     let config: ResponseConfig
-    
+    @EnvironmentObject var tokensVM: DesignTokensViewModel
+
     var body: some View {
             VStack {
                 HStack {
@@ -90,8 +91,7 @@ struct CartDribbbleView: View {
                 
                 Spacer()
                 
-                MenuNavigator(config:config, home:false)
-                    .padding(.bottom, 5)
+                MenuNavigator(config: config, home: false)
                 
                 Spacer()
             }
@@ -120,3 +120,4 @@ private struct CartPreviewWrapper: View {
         }
     }
 }
+

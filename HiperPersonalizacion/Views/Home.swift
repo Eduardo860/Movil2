@@ -88,6 +88,7 @@ struct Home: View {
             VStack {
                 Spacer()
                 MenuNavigator(config: config, home: true)
+                    .environmentObject(tokensVM)
             }
         }
     }
