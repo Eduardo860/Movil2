@@ -20,7 +20,7 @@ struct ProductCardView: View {
             ZStack(alignment: .bottom) {
                 
                 RoundedRectangle(cornerRadius: config.border)
-                    .fill(Color(hex: config.bg_bottom).opacity(0.25))
+                    .fill(Color(hex: config.bg_bottom).opacity(0.75))
                     .shadow(color: Color.black.opacity(0.06),
                             radius: 10, x: 0, y: 8)
                     .frame(height: cardHeight)

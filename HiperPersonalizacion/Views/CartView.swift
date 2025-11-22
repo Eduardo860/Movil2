@@ -18,7 +18,6 @@ struct CartDribbbleView: View {
                     Text(config.cart_title)
                         .font(config.fuente.toSwiftUIFont(size: 24))
                         .foregroundColor(Color(hex: config.button))
-                        .padding(.top, 15)
                         .padding(.leading, 70)
                     Spacer()
                     AsyncImage(url: URL(string: "https://static.vecteezy.com/system/resources/previews/024/032/417/non_2x/chinese-young-guy-student-with-glasses-smiling-generative-ai-photo.jpg")) { phase in
@@ -56,7 +55,6 @@ struct CartDribbbleView: View {
                         }
                     }
                     .padding(.trailing, 18)
-                    .padding(.top, 20)
                 }
                 ItemCardView(
                     config: config,
