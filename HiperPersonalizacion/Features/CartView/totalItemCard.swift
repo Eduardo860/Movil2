@@ -63,7 +63,7 @@ struct totalItemCard: View {
         .background(
             RoundedRectangle(cornerRadius: config.border)
                 .fill(
-                    Color.white
+                    Color(hex: config.bg_bottom)
                 )
         )
     }

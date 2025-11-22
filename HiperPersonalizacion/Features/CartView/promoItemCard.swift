@@ -28,7 +28,7 @@ struct promoItemCard: View {
                 .padding(.trailing, 5)
         }
         .frame(height: 70)
-        .background(Color.white)
+        .background(Color(hex: config.bg_bottom))
         .cornerRadius(config.border)
     }
 }

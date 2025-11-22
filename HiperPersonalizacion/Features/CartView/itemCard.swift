@@ -110,7 +110,7 @@ struct ItemCardView: View {
         .padding(14)
         .background(
             RoundedRectangle(cornerRadius: config.border)
-                .fill(Color.white)
+                .fill(Color(hex: config.bg_bottom))
         )
         .shadow(color: Color.black.opacity(0.10), radius: 18, x: 0, y: 8)
     }

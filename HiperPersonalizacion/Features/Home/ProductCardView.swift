@@ -99,14 +99,14 @@ struct ProductCardView: View {
                                 Group {
                                     if product.price.lowercased() == "in cart" {
                                         Text(product.price)
-                                            .font(config.fuente.toSwiftUIFont(size: 13))
+                                            .font(config.fuente.toSwiftUIFont(size: 14))
                                             .foregroundColor(Color(hex: config.button))
                                     } else {
                                         HStack(spacing: 6) {
                                             Image(systemName: "basket.fill")
                                                 .font(.system(size: 13, weight: .semibold))
                                             Text(product.price)
-                                                .font(config.fuente.toSwiftUIFont(size: 13))
+                                                .font(config.fuente.toSwiftUIFont(size: 14))
                                         }
                                         .foregroundColor(Color(hex: config.button))
                                     }

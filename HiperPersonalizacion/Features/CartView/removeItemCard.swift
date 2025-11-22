@@ -33,7 +33,7 @@ struct removeItemCard: View {
         .background(
             RoundedRectangle(cornerRadius: 24)
                 .fill(
-                    Color.white
+                    Color(hex: config.bg_bottom)
                 )
         )
         
